@@ -1,0 +1,1 @@
+List<String?> productType = ['Food', 'Electronics', 'Books'];
