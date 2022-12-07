@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_project/pages/add_product_page.dart';
+import 'package:shopping_project/pages/cart_page.dart';
 import 'package:shopping_project/pages/launcher_page.dart';
 import 'package:shopping_project/pages/login_page.dart';
 import 'package:shopping_project/pages/product_details_page.dart';
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         NewProductAddPage.routeName:(context)=> const NewProductAddPage(),
         ProductDetailsPage.routeName:(context)=> const ProductDetailsPage(),
         LoginPage.routeName: (context) => const LoginPage(),
-        LauncherPage.routeName: (context) => const LauncherPage()
+        LauncherPage.routeName: (context) => const LauncherPage(),
+        CartPage.routeName: (context) => const CartPage()
       },
     );
   }

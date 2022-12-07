@@ -8,6 +8,7 @@ import 'package:shopping_project/pages/product_details_page.dart';
 
 import '../providers/product_provider.dart';
 import '../utils/helper_function.dart';
+import 'cart_page.dart';
 import 'launcher_page.dart';
 
 class ProductListPage extends StatefulWidget {
@@ -89,7 +90,9 @@ class _ProductListPageState extends State<ProductListPage> {
                                 ],
                               ),
                               const SizedBox(width: 80,),
-                              const Icon(Icons.shopping_cart,color: Color(0xFFda2079),)
+                              InkWell(onTap: () => Navigator.pushNamed(context, CartPage.routeName,
+                                  arguments: [product.id, product.name]),
+                                  child: const Icon(Icons.shopping_cart,color: Color(0xFFda2079),))
                             ],
                           )
                         ],

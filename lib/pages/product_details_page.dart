@@ -31,6 +31,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFf7f2ff),
       appBar: AppBar(title: Text(name),
       backgroundColor: const Color(0xFFda2079),),
       body: Center(

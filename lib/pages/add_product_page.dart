@@ -46,6 +46,7 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFf7f2ff),
       appBar: AppBar(
         backgroundColor: const Color(0xFFda2079),
         title: Text("Add New Product"),
