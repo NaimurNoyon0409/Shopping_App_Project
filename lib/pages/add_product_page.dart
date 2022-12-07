@@ -1,7 +1,10 @@
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
+import '../models/product_model.dart';
 import '../utils/constants.dart';
 import '../utils/helper_function.dart';
 class NewProductAddPage extends StatefulWidget {
@@ -19,6 +22,7 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
   final _formkey = GlobalKey<FormState>();
   String? selectedType;
   DateTime? expireDate;
+  String? imagePath;
 
   @override
   void dispose() {
@@ -140,6 +144,31 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  imagePath == null
+                      ? const Icon(
+                    Icons.movie,
+                    size: 100,
+                  )
+                      : Image.file(
+                    File(imagePath!),
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
+                  TextButton.icon(
+                    onPressed: getImage,
+                    icon: const Icon(Icons.photo),
+                    label: const Text('Select from Gallery'),
+                  )
+                ],
+              ),
+            ),
+
           ],
         ),
       ),
@@ -147,8 +176,68 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
   }
 
   void saveProduct() {
+    if (expireDate == null) {
+      showMsg(context, 'Please select a date');
+      return;
+    }
+    if (imagePath == null) {
+      showMsg(context, 'Please select an image');
+      return;
+    }
+    if (_formkey.currentState!.validate()) {
+
+      final product = ProductModel(
+        name: nameController.text,
+        image: imagePath!,
+        description: descriptionController.text,
+        price: int.parse(priceController.text),
+        type: selectedType!,
+        expire_date: getFormattedDate(expireDate!, 'dd/MM/yyyy'),
+      );
+/*      if(id != null) {
+        product.id = id;
+        productProvider.updateProduct(product)
+            .then((value) {
+          productProvider.getAllMovies();
+          Navigator.pop(context, product.name);
+        })
+            .catchError((error) {
+          print(error.toString());
+        });
+      } else {
+        productProvider
+            .insertMovie(movie)
+            .then((value) {
+          productProvider.getAllMovies();
+          Navigator.pop(context);
+        }).catchError((error) {
+          print(error.toString());
+        });
+      }*/
+    }
   }
 
-  void selectDate() {
+  void selectDate() async {
+    final selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if(selectedDate != null){
+      setState(() {
+        expireDate = selectedDate;
+      });
+    }
+  }
+
+  void getImage() async{
+    final file = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if(file != null)
+      {
+        setState(() {
+          imagePath = file.path;
+        });
+      }
   }
 }
