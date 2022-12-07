@@ -14,4 +14,7 @@ class ProductProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<ProductModel> getProductById(int id) =>
+      DbHelper.getProductById(id);
+
 }

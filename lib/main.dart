@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_project/pages/add_product_page.dart';
+import 'package:shopping_project/pages/product_details_page.dart';
 import 'package:shopping_project/pages/product_list_page.dart';
 import 'package:shopping_project/providers/product_provider.dart';
 
@@ -35,8 +36,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: ProducListPage.routeName,
       routes: {
-        ProducListPage.routeName:(context)=> ProducListPage(),
-        NewProductAddPage.routeName:(context)=> NewProductAddPage()
+        ProducListPage.routeName:(context)=> const ProducListPage(),
+        NewProductAddPage.routeName:(context)=> const NewProductAddPage(),
+        ProductDetailsPage.routeName:(context)=> const ProductDetailsPage(),
       },
     );
   }

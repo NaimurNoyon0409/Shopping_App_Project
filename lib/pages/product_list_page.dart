@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_project/pages/add_product_page.dart';
+import 'package:shopping_project/pages/product_details_page.dart';
 
 import '../providers/product_provider.dart';
 
@@ -37,6 +38,8 @@ class _ProducListPageState extends State<ProducListPage> {
           itemBuilder: (context, index) {
             final product = provider.productList[index];
             return ListTile(
+              onTap: ()=> Navigator.pushNamed(context,ProductDetailsPage.routeName,
+              arguments: [product.id, product.name]),
               leading: Image.file(File(product.image), width: 100,height: 100,fit: BoxFit.cover, ),
               title: Text(product.name),
               subtitle: Text(product.type),

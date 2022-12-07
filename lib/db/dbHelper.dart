@@ -36,4 +36,12 @@ class DbHelper {
     return List.generate(mapList.length, (index) =>
         ProductModel.fromMap(mapList[index]));
   }
+
+  static Future<ProductModel> getProductById(int id) async {
+    final db = await open();
+    final mapList = await db.query(tableProduct, where: '$tblProductColId = ?', whereArgs: [id]);
+    return ProductModel.fromMap(mapList.first);
+  }
+
+
 }
