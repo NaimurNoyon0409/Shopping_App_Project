@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_project/providers/product_provider.dart';
 
 import '../models/product_model.dart';
 import '../utils/constants.dart';
@@ -16,6 +18,7 @@ class NewProductAddPage extends StatefulWidget {
 }
 
 class _NewProductAddPageState extends State<NewProductAddPage> {
+  late ProductProvider productProvider;
   final nameController = TextEditingController();
   final descriptionController = TextEditingController();
   final priceController = TextEditingController();
@@ -23,6 +26,13 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
   String? selectedType;
   DateTime? expireDate;
   String? imagePath;
+
+  @override
+  void didChangeDependencies() {
+    productProvider = Provider.of<ProductProvider>(context, listen: false);
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {
@@ -214,6 +224,14 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
           print(error.toString());
         });
       }*/
+    productProvider
+         .insertProduct(product)
+         .then((value) {
+           productProvider.getAllProducts();
+           Navigator.pop(context);
+    }).catchError((error){
+      print(error.toString());
+    });
     }
   }
 

@@ -29,4 +29,11 @@ class DbHelper {
     final db = await open();
     return db.insert(tableProduct, productModel.toMap());
   }
+
+  static Future<List<ProductModel>> getAllProducts() async {
+    final db = await open();
+    final mapList = await db.query(tableProduct);
+    return List.generate(mapList.length, (index) =>
+        ProductModel.fromMap(mapList[index]));
+  }
 }

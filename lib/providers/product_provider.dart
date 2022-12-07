@@ -4,9 +4,14 @@ import '../db/dbHelper.dart';
 import '../models/product_model.dart';
 
 class ProductProvider extends ChangeNotifier {
-  List<ProductModel> movieList = [];
+  List<ProductModel> productList = [];
 
-  Future<int> insertMovie(ProductModel productModel) =>
+  Future<int> insertProduct(ProductModel productModel) =>
       DbHelper.insertProduct(productModel);
+
+  void getAllProducts() async {
+    productList = await DbHelper.getAllProducts();
+    notifyListeners();
+  }
 
 }
