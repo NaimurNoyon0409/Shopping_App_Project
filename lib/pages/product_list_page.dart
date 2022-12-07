@@ -6,16 +6,18 @@ import 'package:shopping_project/pages/add_product_page.dart';
 import 'package:shopping_project/pages/product_details_page.dart';
 
 import '../providers/product_provider.dart';
+import '../utils/helper_function.dart';
+import 'launcher_page.dart';
 
-class ProducListPage extends StatefulWidget {
+class ProductListPage extends StatefulWidget {
   static const String routeName = '/home';
-  const ProducListPage({Key? key}) : super(key: key);
+  const ProductListPage({Key? key}) : super(key: key);
 
   @override
-  State<ProducListPage> createState() => _ProducListPageState();
+  State<ProductListPage> createState() => _ProductListPageState();
 }
 
-class _ProducListPageState extends State<ProducListPage> {
+class _ProductListPageState extends State<ProductListPage> {
   @override
   void didChangeDependencies() {
     Provider.of<ProductProvider>(context, listen: false).getAllProducts();
@@ -25,13 +27,23 @@ class _ProducListPageState extends State<ProducListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Product List'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setLoginStatus(false).then((value) {
+                Navigator.pushReplacementNamed(context, LauncherPage.routeName);
+              });
+            },
+            icon: const Icon(Icons.logout),
+          )
+        ],),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.pushNamed(context, NewProductAddPage.routeName);
         },
         child: const Icon(Icons.add),
       ),
-      appBar: AppBar(title: const Text("Product List"),),
       body: Consumer<ProductProvider>(
         builder: (context, provider, child) => ListView.builder(
           itemCount: provider.productList.length,

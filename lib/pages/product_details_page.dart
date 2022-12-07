@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_project/providers/product_provider.dart';
-
 import '../models/product_model.dart';
+import '../utils/helper_function.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   static const String routeName = '/details';
@@ -59,7 +59,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('Budget'),
+                    title: const Text('Price'),
                     trailing: Text('\$${product.price}'),
                   ),
                   Padding(

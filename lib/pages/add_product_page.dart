@@ -30,6 +30,7 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
   @override
   void didChangeDependencies() {
     productProvider = Provider.of<ProductProvider>(context, listen: false);
+
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }

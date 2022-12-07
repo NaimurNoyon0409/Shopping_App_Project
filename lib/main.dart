@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_project/pages/add_product_page.dart';
+import 'package:shopping_project/pages/launcher_page.dart';
+import 'package:shopping_project/pages/login_page.dart';
 import 'package:shopping_project/pages/product_details_page.dart';
 import 'package:shopping_project/pages/product_list_page.dart';
 import 'package:shopping_project/providers/product_provider.dart';
+import 'package:shopping_project/providers/user_provider.dart';
 
 void main() {
   runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => ProductProvider())
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider())
       ],
     child: const MyApp(),
   ));
@@ -34,11 +38,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      initialRoute: ProducListPage.routeName,
+      initialRoute: LauncherPage.routeName,
       routes: {
-        ProducListPage.routeName:(context)=> const ProducListPage(),
+        ProductListPage.routeName:(context)=> const ProductListPage(),
         NewProductAddPage.routeName:(context)=> const NewProductAddPage(),
         ProductDetailsPage.routeName:(context)=> const ProductDetailsPage(),
+        LoginPage.routeName: (context) => const LoginPage(),
+        LauncherPage.routeName: (context) => const LauncherPage()
       },
     );
   }
