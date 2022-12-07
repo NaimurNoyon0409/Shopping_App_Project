@@ -39,6 +39,7 @@ dependencies:
   image_picker:
   sqflite:
   shared_preferences:
+  google_fonts:
 
 dev_dependencies:
   flutter_test:

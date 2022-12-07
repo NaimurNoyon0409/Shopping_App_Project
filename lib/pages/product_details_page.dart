@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_project/providers/product_provider.dart';
 import '../models/product_model.dart';
@@ -30,6 +31,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(name),
+      backgroundColor: const Color(0xFFda2079),),
       body: Center(
         child: FutureBuilder<ProductModel>(
           future: provider.getProductById(id),
@@ -40,23 +43,15 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 children: [
                   Image.file(
                     File(product.image),
-                    width: double.infinity,
+                    width: 200,
                     height: 250,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                   ListTile(
-                    title: Text(product.name),
-                    subtitle: Text(product.type),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        Text('4.5'),
-                      ],
-                    ),
+                    title: Text("Product Name : ${product.name}",
+                      style: GoogleFonts.acme(color: const Color(0xFFda2079),fontSize: 20),),
+                    subtitle: Text("Product Categories : ${product.type}",
+                      style: GoogleFonts.acme(color: Colors.black38,fontSize: 15),),
                   ),
                   ListTile(
                     title: const Text('Price'),

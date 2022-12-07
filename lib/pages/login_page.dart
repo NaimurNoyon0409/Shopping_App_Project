@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_project/pages/product_list_page.dart';
-
-import '../models/user_model.dart';
-import '../providers/user_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../utils/helper_function.dart';
 import 'launcher_page.dart';
-import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   static const String routeName = '/login';
@@ -24,14 +20,16 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFf7f2ff),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              'Login Page',
-              style: TextStyle(fontSize: 26),
+             Text(
+              'Welcome',
+              style: GoogleFonts.acme(color: const Color(0xFFda2079),fontSize: 46),
             ),
+            const SizedBox(height: 50,),
             Form(
                 key: _formKey,
                 child: Column(
@@ -46,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                                 borderSide:
-                                BorderSide(color: Colors.blue, width: 1))),
+                                BorderSide(color: Color(0xFFda2079), width: 1))),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Email is required';
@@ -68,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(6),
                                 borderSide:
-                                BorderSide(color: Colors.blue, width: 1))),
+                                BorderSide(color: Color(0xFFda2079), width: 1))),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Password is required';
@@ -92,9 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                               });
                             }
                           },
-                          child: Text('Login'),
+                          child: Text('Login',style: GoogleFonts.acme(color: const Color(0xFFda2079),fontSize: 20),),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
                         TextButton(
@@ -106,11 +104,11 @@ class _LoginPageState extends State<LoginPage> {
                               });
                             }
                           },
-                          child: Text('Register'),
+                          child: Text('Register',style: GoogleFonts.acme(color: const Color(0xFFda2079),fontSize: 20),),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Text(
