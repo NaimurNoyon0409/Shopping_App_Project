@@ -54,13 +54,33 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       style: GoogleFonts.acme(color: Colors.black38,fontSize: 15),),
                   ),
                   ListTile(
-                    title: const Text('Price'),
-                    trailing: Text('\$${product.price}'),
+                    title: Text('Price  --  ',
+                      style: GoogleFonts.acme(color: const Color(0xFFda2079),fontSize: 20) ,),
+                    trailing: Text('\$${product.price}',
+                      style: GoogleFonts.acme(color: Colors.red,fontSize: 40),),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text("Product Description : ",
+                        style: GoogleFonts.acme(color: const Color(0xFFda2079),fontSize: 20)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Text(product.description),
+                    child: Text(product.description,
+                      style: GoogleFonts.acme(color: Colors.black38,fontSize: 15),),
                   ),
+                  const SizedBox(height: 30,),
+                  TextButton(
+                      onPressed: () => Navigator.pushNamed(context, ProductDetailsPage.routeName,
+                      arguments: [product.id, product.name]),
+                      child: const Icon(Icons.shopping_cart,size: 50,color: Color(0xFFda2079),)
+                  ),
+                  Column(
+                    children: [
+                      Text('Add To Cart',style:GoogleFonts.acme(color: Colors.black38,fontSize: 15),
+                      ),
+                    ],
+                  )
                 ],
               );
             }

@@ -47,6 +47,7 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFFda2079),
         title: Text("Add New Product"),
         actions: [
           IconButton(onPressed: saveProduct,
@@ -146,8 +147,8 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
                 children: [
                   TextButton.icon(
                     onPressed: selectDate,
-                    icon: const Icon(Icons.calendar_month),
-                    label: const Text('Select Release Date'),
+                    icon: const Icon(Icons.calendar_month,color: Color(0xFFda2079),),
+                    label: const Text('Select Release Date',style: TextStyle(color: Color(0xFFda2079)),),
                   ),
                   Text(expireDate == null
                       ? 'No date chosen'
@@ -163,6 +164,7 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
                   imagePath == null
                       ? const Icon(
                     Icons.movie,
+                    color: Color(0xFFda2079),
                     size: 100,
                   )
                       : Image.file(
@@ -173,8 +175,8 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
                   ),
                   TextButton.icon(
                     onPressed: getImage,
-                    icon: const Icon(Icons.photo),
-                    label: const Text('Select from Gallery'),
+                    icon: const Icon(Icons.photo,color: Color(0xFFda2079),),
+                    label: const Text('Select from Gallery',style: TextStyle(color: Color(0xFFda2079)),),
                   )
                 ],
               ),
@@ -205,26 +207,6 @@ class _NewProductAddPageState extends State<NewProductAddPage> {
         type: selectedType!,
         expire_date: getFormattedDate(expireDate!, 'dd/MM/yyyy'),
       );
-/*      if(id != null) {
-        product.id = id;
-        productProvider.updateProduct(product)
-            .then((value) {
-          productProvider.getAllMovies();
-          Navigator.pop(context, product.name);
-        })
-            .catchError((error) {
-          print(error.toString());
-        });
-      } else {
-        productProvider
-            .insertMovie(movie)
-            .then((value) {
-          productProvider.getAllMovies();
-          Navigator.pop(context);
-        }).catchError((error) {
-          print(error.toString());
-        });
-      }*/
     productProvider
          .insertProduct(product)
          .then((value) {
