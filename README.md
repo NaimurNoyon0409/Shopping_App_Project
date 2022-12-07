@@ -1,6 +1,6 @@
 # shopping_project
 
-A new Flutter project.
+A Shopping E-Commerce project with local database using Flutter
 
 ## Getting Started
 
